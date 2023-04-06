@@ -5,35 +5,48 @@ fun testaMapAula3() {
         Pair(1, 20.0),
         Pair(2, 34.0),
         3 to 50.0,
-        4 to 45.0
+        4 to 100.0,
+        5 to 150.0,
+        6 to 80.0
+        //    metodo infix 3 to 50.0
     )
-//    metodo infix 3 to 50.0
-    println(pedidos)
-    val pedido = pedidos[3]
-    pedido?.let {
-        println("pedido $it")
+//    val valorPedido = pedidos.getValue(4) "SE O GETVALUE NÂO EXISTE ELE TRAS UMA EXCEPTION"
+//    println(pedidos[0])
+    val Mensagem = pedidos.getOrElse(3,
+        {
+            "Não tem o pedido"
+        })
+//    """SE NAO TIVER A KEY ELE DEVOLVE A EXPRESSÂO LAMBIDA"""
+    println(Mensagem)
+    println(pedidos.getOrDefault(1, -1.0))
+    println(pedidos.getOrDefault(0, -1.0))
+
+    println(pedidos.keys)
+
+    for (numeros in pedidos.keys) {
+        println("Pedido $numeros")
     }
-    for (p: Map.Entry<Int, Double> in pedidos) {
-        println("numero do pedido: ${p.key}")
-        println("valor do pedido: ${p.value}")
+
+    println(pedidos.values)
+
+    for (valor in pedidos.values) {
+        println("Valor do pedido: $valor")
     }
-    pedidos[4] = 70.0
-    println(pedidos)
-    pedidos.put(5, 80.0)
-//    println("MESMA MANEIRA DO PEDIDO 4 (.PUT)")
-    println(pedidos)
-    pedidos[1] = 100.0
-    println(pedidos)
-//    pedidos.putIfAbsent(6, 200.0) "ELE SÒ ADICIONA ALGO SE NÂO EXISTIR"
-    pedidos.putIfAbsent(6, 200.0)
-    println(pedidos)
-    pedidos.putIfAbsent(6, 300.0)
-    println(pedidos)
 
-    pedidos.remove(6)
-    println(pedidos)
-//    pedidos.remove(3, 100.0) "SE CHEGAR AO VALOR AO LADO ELE È REMOVIDO"
-    println(pedidos)
+    val pedidosFiltrados = pedidos.filter { (numero, valor) ->
+        numero % 2 == 0 && valor > 50.0
+    }
 
+    println(pedidosFiltrados)
 
+    val pedidosAcima = pedidos.filterValues { valor ->
+        valor > 70.0
+    }
+    println(pedidosAcima)
+
+    val pedidosPares = pedidos.filterKeys { numero ->
+        numero % 2 == 0
+    }
+    println(pedidosPares)
 }
+
