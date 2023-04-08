@@ -6,7 +6,7 @@ fun testaMapAula3() {
         Pair(2, 34.0),
         3 to 50.0,
         4 to 100.0,
-        5 to 150.0,
+        5 to 100.0,
         6 to 80.0
         //    metodo infix 3 to 50.0
     )
@@ -48,5 +48,25 @@ fun testaMapAula3() {
         numero % 2 == 0
     }
     println(pedidosPares)
+
+    println(pedidos + mapOf(7 to 90.0, 8 to 20.0))
+    println(pedidos)
+
+    println(pedidos - listOf(6, 5))
+    println(pedidos)
+
+//    pedidos.putAll(listOf<Pair<Int,Double>>(7 to 90.0, 8 to 20.0)) " FAZ A MESMA COISA QUE += "
+
+    pedidos += listOf<Pair<Int,Double>>(7 to 90.0, 8 to 20.0)
+    println(pedidos)
+
+    pedidos.keys.remove(1)
+    println(pedidos)
+
+    pedidos.values.remove(100.0)
+    println(pedidos)
+
+    println(pedidos + (7 to 90))
+
 }
 
